@@ -24,7 +24,7 @@ const CATEGORY_MAP = {
   tv360: "TV360 📡",
   vtvprime: "VTVPrime 🛰️",
   international: "QUỐC TẾ 🌍",
-  htv: "HTV x HTVC 🧬",
+  "htv-htvc": "HTV x HTVC 🧬",
   sctv: "SCTV 🎫",
   local: "ĐỊA PHƯƠNG 📺",
   backup: "BACKUP 📌"
@@ -38,8 +38,8 @@ function getManifest() {
   return JSON.stringify({
     id: "vietanhtv",
     name: "VietAnhTV",
-    version: "1.0.1",
-    baseUrl: "https://tv.vietanhtv.top/tv",
+    version: "1.0.2",
+    baseUrl: BASE_URL,
     iconUrl: "https://i.ibb.co/b8dVqVt/vietanhtv-logo.jpg",
     isEnabled: true,
     isAdult: false,
@@ -55,12 +55,7 @@ function getHomeSections() {
     { slug: "vtvcab", title: "VTVcab 💎", type: "Horizontal", path: "" },
     { slug: "tv360", title: "TV360 📡", type: "Horizontal", path: "" },
     { slug: "vtvprime", title: "VTVPrime 🛰️", type: "Horizontal", path: "" },
-    {
-      slug: "international",
-      title: "QUỐC TẾ 🌍",
-      type: "Horizontal",
-      path: ""
-    },
+    { slug: "international", title: "QUỐC TẾ 🌍", type: "Horizontal", path: "" },
     { slug: "htv-htvc", title: "HTV x HTVC 🧬", type: "Horizontal", path: "" },
     { slug: "sctv", title: "SCTV 🎫", type: "Horizontal", path: "" },
     { slug: "local", title: "ĐỊA PHƯƠNG 📺", type: "Horizontal", path: "" },
@@ -128,13 +123,12 @@ function parseListResponse(html, apiUrl) {
     const keyword = extractParamFromUrl(apiUrl, "search");
     if (category)
       channels = filterChannels(channelList, ["category", category]);
-    if (keyword) channels = filterChannels(channelList, ["search", keyword]);
+    else if (keyword) channels = filterChannels(channelList, ["search", keyword]);
 
     channels.forEach((channel) => {
       const {
         name,
         tvgLogo,
-        tvgGroup,
         channelId,
         props: {
           "inputstream.adaptive.manifest_type": manifestType,
@@ -170,8 +164,8 @@ function parseListResponse(html, apiUrl) {
       items: items,
       pagination: { currentPage: 1, totalPages: 1 }
     });
-  } catch (e) {
-    console.log("Error message [parseListResponse]: ", e);
+  } catch (error) {
+    console.log("⛔ [parseDetailResponse] ERROR MESSAGE: ", error);
     return JSON.stringify({
       items: [],
       pagination: { currentPage: 1, totalPages: 1 }
@@ -184,106 +178,111 @@ function parseSearchResponse(html, apiUrl) {
 }
 
 function parseDetailResponse(html, apiUrl) {
-  if (apiUrl.indexOf("|") > 0) apiUrl = apiUrl.split("|")[0];
-  const channelId = extractParamFromUrl(apiUrl, "channelId");
-  const {
-    url,
-    name,
-    props: {
-      "http-user-agent": userAgent,
-      "http-referrer": referrer,
-      "http-origin": origin,
-      "inputstream.adaptive.manifest_type": manifestType,
-      "inputstream.adaptive.license_type": licenseType,
-      "inputstream.adaptive.license_key": licenseKey
-    }
-  } = getChannel(channelList, channelId);
-
-  // Handle license_type and
-  // Value manifest_type = dash or mdp
-  // Value license_type = clearkey
-  if (licenseType === "clearkey") {
-    const clearKey = {};
-    try {
-      // JSON format {"keys":[{"kid":"...","k":"..."}]}
-      const keyData = JSON.parse(html);
-      if (keyData.keys && Array.isArray(keyData.keys)) {
-        keyData.keys.forEach((k) => {
-          clearKey.drmKid = base64ToHex(k.kid);
-          clearKey.drmKey = base64ToHex(k.k);
-        });
-        // JSON format {"kid":"...","k":"..."}
-      } else if (keyData.kid && keyData.k) {
-        clearKey.drmKid = base64ToHex(keyData.kid);
-        clearKey.drmKey = base64ToHex(keyData.k);
+  try {
+    if (apiUrl.indexOf("|") > 0) apiUrl = apiUrl.split("|")[0];
+    const channelId = extractParamFromUrl(apiUrl, "channelId");
+    const {
+      url,
+      name,
+      props: {
+        "http-user-agent": userAgent,
+        "http-referrer": referrer,
+        "http-origin": origin,
+        "inputstream.adaptive.manifest_type": manifestType,
+        "inputstream.adaptive.license_type": licenseType,
+        "inputstream.adaptive.license_key": licenseKey
       }
-    } catch (e) {
-      console.log("Error message [parseDetailResponse]: ", e);
-      // Hex format "KID:KEY" (e.g. license_key=aabb...:ccdd...)
-      if (licenseKey && licenseKey.includes(":")) {
-        const parts = licenseKey.split(":");
-        if (
-          parts.length === 2 &&
-          /^[0-9a-fA-F]+$/.test(parts[0]) &&
-          /^[0-9a-fA-F]+$/.test(parts[1])
-        ) {
-          clearKey.drmKid = parts[0].toLowerCase();
-          clearKey.drmKey = parts[1].toLowerCase();
+    } = getChannel(channelList, channelId);
+
+    // Handle license_type and
+    // Value manifest_type = dash or mdp
+    // Value license_type = clearkey
+    if (licenseType === "clearkey") {
+      const clearKey = {};
+      try {
+        // JSON format {"keys":[{"kid":"...","k":"..."}]}
+        const keyData = JSON.parse(html);
+        if (keyData.keys && Array.isArray(keyData.keys)) {
+          keyData.keys.forEach((k) => {
+            clearKey.drmKid = base64ToHex(k.kid);
+            clearKey.drmKey = base64ToHex(k.k);
+          });
+          // JSON format {"kid":"...","k":"..."}
+        } else if (keyData.kid && keyData.k) {
+          clearKey.drmKid = base64ToHex(keyData.kid);
+          clearKey.drmKey = base64ToHex(keyData.k);
+        }
+      } catch (e) {
+        console.log("Error message [parseDetailResponse]: ", e);
+        // Hex format "KID:KEY" (e.g. license_key=aabb...:ccdd...)
+        if (licenseKey && licenseKey.includes(":")) {
+          const parts = licenseKey.split(":");
+          if (
+            parts.length === 2 &&
+            /^[0-9a-fA-F]+$/.test(parts[0]) &&
+            /^[0-9a-fA-F]+$/.test(parts[1])
+          ) {
+            clearKey.drmKid = parts[0].toLowerCase();
+            clearKey.drmKey = parts[1].toLowerCase();
+          }
         }
       }
+      console.log("Name: ", name);
+      console.log("ClearKey:", clearKey);
+      console.log("URL:", url);
+      return JSON.stringify({
+        isEmbed: false,
+        url: url,
+        mimeType: "application/dash+xml",
+        drmType: "clearkey",
+        drmKid: clearKey.drmKid,
+        drmKey: clearKey.drmKey,
+        headers: {
+          "User-Agent": userAgent || "Dalvik/2.1.0",
+          Referer: referrer || url,
+          Origin: origin || url
+        }
+      });
     }
-    console.log("Name: ", name);
-    console.log("ClearKey:", clearKey);
-    console.log("URL:", url);
-    return JSON.stringify({
-      isEmbed: false,
-      url: url,
-      mimeType: "application/dash+xml",
-      drmType: "clearkey",
-      drmKid: clearKey.drmKid,
-      drmKey: clearKey.drmKey,
-      headers: {
-        "User-Agent": userAgent || "Dalvik/2.1.0",
-        Referer: referrer || url,
-        Origin: origin || url
-      }
-    });
-  }
-  // Value manifest_type = dash or mdp
-  // Value license_type = widevine
-  else if (licenseType === "widevine") {
-    const licenseUrl = apiUrl.substring(0, apiUrl.indexOf("&channelId"));
-    console.log("Name: ", name);
-    console.log("Widevine:", apiUrl);
-    console.log("URL:", url);
-    return JSON.stringify({
-      isEmbed: false,
-      url: url,
-      mimeType: "application/dash+xml",
-      drmType: "widevine",
-      licenseUrl: licenseUrl,
-      headers: {
-        "User-Agent": userAgent || "Dalvik/2.1.0",
-        Referer: referrer || url,
-        Origin: origin || url
-      }
-    });
-  }
-  // No manifest_type and licenseType,
-  // Normal HSL (m3u8)
-  else {
-    console.log("Name: ", name);
-    console.log("URL:", url);
-    return JSON.stringify({
-      isEmbed: false,
-      url: url,
-      mimeType: "application/x-mpegURL",
-      headers: {
-        "User-Agent": userAgent || "Dalvik/2.1.0",
-        Referer: referrer || url,
-        Origin: origin || url
-      }
-    });
+    // Value manifest_type = dash or mdp
+    // Value license_type = widevine
+    else if (licenseType === "widevine") {
+      const licenseUrl = apiUrl.substring(0, apiUrl.indexOf("&channelId"));
+      console.log("Name: ", name);
+      console.log("Widevine:", apiUrl);
+      console.log("URL:", url);
+      return JSON.stringify({
+        isEmbed: false,
+        url: url,
+        mimeType: "application/dash+xml",
+        drmType: "widevine",
+        licenseUrl: licenseUrl,
+        headers: {
+          "User-Agent": userAgent || "Dalvik/2.1.0",
+          Referer: referrer || url,
+          Origin: origin || url
+        }
+      });
+    }
+    // No manifest_type and licenseType,
+    // Normal HSL (m3u8)
+    else {
+      console.log("Name: ", name);
+      console.log("URL:", url);
+      return JSON.stringify({
+        isEmbed: false,
+        url: url,
+        mimeType: "application/x-mpegURL",
+        headers: {
+          "User-Agent": userAgent || "Dalvik/2.1.0",
+          Referer: referrer || url,
+          Origin: origin || url
+        }
+      });
+    }
+  } catch (error) {
+    console.log("⛔ [parseDetailResponse] ERROR MESSAGE: ", error);
+    return "{}";
   }
 }
 
@@ -328,8 +327,10 @@ function filterChannels(channels, [filterKey, filterValue]) {
 }
 
 function getChannel(channels, channelId) {
-  if (channelId) return channels[channelId];
-  return {};
+  if (channelId === undefined || channelId === null || channelId === "") return {};
+  const numId = parseInt(channelId, 10);
+  if (!isNaN(numId) && channels[numId]) return channels[numId];
+  return channels.find(channel => String(channel.channelId) === String(channelId)) || {};
 }
 
 function parseM3U(text) {
