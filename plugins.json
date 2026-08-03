@@ -4,7 +4,7 @@
     {
       "id": "vietanhtv",
       "name": "VietAnhTV",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "scriptUrl": "https://raw.githubusercontent.com/nicolainani/vaxapp-iptv-plugins/refs/heads/main/vietanhtv_plugin.js",
       "iconUrl": "https://i.ibb.co/b8dVqVt/vietanhtv-logo.jpg",
       "info": "VIETNAM IPTV"
@@ -12,15 +12,31 @@
     {
       "id": "vmttv",
       "name": "VMTTV",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "scriptUrl": "https://raw.githubusercontent.com/nicolainani/vaxapp-iptv-plugins/refs/heads/main/vmttv_plugin.js",
       "iconUrl": "https://i.ibb.co/nq4ns7bd/vmttv-logo.jpg",
       "info": "VIETNAM IPTV"
     },
     {
+      "id": "hoiquanclick",
+      "name": "HOIQUANCLICK",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/nicolainani/vaxapp-iptv-plugins/refs/heads/main/hoiquanclick_plugin.js",
+      "iconUrl": "https://i.ibb.co/HpXFPKxL/hoiquanclick-logo.png",
+      "info": "VIETNAM IPTV"
+    },
+    {
+      "id": "tvpub",
+      "name": "TVPUB",
+      "version": "1.0.0",
+      "scriptUrl": "https://raw.githubusercontent.com/nicolainani/vaxapp-iptv-plugins/refs/heads/main/tvpub_plugin.js",
+      "iconUrl": "https://i.ibb.co/KjVv0WRP/tvpub-logo.jpg",
+      "info": "VIETNAM IPTV"
+    },
+    {
       "id": "sgchill",
       "name": "SGCHILL",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "scriptUrl": "https://raw.githubusercontent.com/nicolainani/vaxapp-iptv-plugins/refs/heads/main/sgchill_plugin.js",
       "iconUrl": "https://sgchill.duckdns.org/favicon.ico",
       "info": "VIETNAM IPTV"
