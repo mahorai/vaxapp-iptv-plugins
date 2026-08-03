@@ -4,11 +4,11 @@
 
 function getManifest() {
   return JSON.stringify({
-    id: "vietanhtv",
-    name: "VietAnhTV",
-    version: "1.0.5",
-    baseUrl: "https://tv.vietanhtv.top/tv",
-    iconUrl: "https://i.ibb.co/b8dVqVt/vietanhtv-logo.jpg",
+    id: "hoiquanclick",
+    name: "HOIQUANCLICK",
+    version: "1.0.0",
+    baseUrl: "https://raw.githubusercontent.com/hoiquanclick/hoiquan/refs/heads/main/vip.m3u",
+    iconUrl: "https://i.ibb.co/nqYkqwj1/hoiquan-logo.png",
     isEnabled: true,
     isAdult: false,
     type: "IPTV",
@@ -23,26 +23,75 @@ function getHomeSections() {
     { slug: "vtv", title: "VTV ⭐", type: "Horizontal", path: "" },
     { slug: "vtvcab", title: "VTVcab 💎", type: "Horizontal", path: "" },
     { slug: "tv360", title: "TV360 📡", type: "Horizontal", path: "" },
-    { slug: "vtvprime", title: "VTVPrime 🛰️", type: "Horizontal", path: "" },
     { slug: "international", title: "QUỐC TẾ 🌍", type: "Horizontal", path: "" },
     { slug: "htv-htvc", title: "HTV x HTVC 🧬", type: "Horizontal", path: "" },
     { slug: "sctv", title: "SCTV 🎫", type: "Horizontal", path: "" },
     { slug: "local", title: "ĐỊA PHƯƠNG 📺", type: "Horizontal", path: "" },
-    { slug: "backup", title: "BACKUP 📌", type: "Horizontal", path: "" }
+    { slug: "radio", title: "Radio 📻", type: "Horizontal", path: "" },
+    { slug: "china", title: "Trung Quốc 🌐", type: "Horizontal", path: "" }, 
+    { slug: "illegal-hoiquanlive", title: "Hội Quán Live ⚽️", type: "Horizontal", path: "" },
+    { slug: "animals-nature", title: "Animals + Nature 🐾", type: "Horizontal", path: "" },
+    { slug: "anime", title: "Anime 🌸", type: "Horizontal", path: "" },
+    { slug: "big-brother-live", title: "Big Brother Live 📹", type: "Horizontal", path: "" },
+    { slug: "classic-tv", title: "Classic TV 📺", type: "Horizontal", path: "" },
+    { slug: "comedy", title: "Comedy 😂", type: "Horizontal", path: "" },
+    { slug: "competition-reality", title: "Competition Reality 🏆", type: "Horizontal", path: "" },
+    { slug: "daytime-game", title: "Daytime + Game 🎲", type: "Horizontal", path: "" },
+    { slug: "drama", title: "Drama 🎭", type: "Horizontal", path: "" },
+    { slug: "en-espanol", title: "En Español 🇪🇸", type: "Horizontal", path: "" },
+    { slug: "entertainment", title: "Entertainment 🎉", type: "Horizontal", path: "" },
+    { slug: "history-science", title: "History + Science 🔬", type: "Horizontal", path: "" },
+    { slug: "home-food", title: "Home + Food 🍳", type: "Horizontal", path: "" },
+    { slug: "kids", title: "Kids 🧸", type: "Horizontal", path: "" },
+    { slug: "local-news", title: "Local News 📍", type: "Horizontal", path: "" },
+    { slug: "movies", title: "Movies 🎬", type: "Horizontal", path: "" },
+    { slug: "music-videos", title: "Music Videos 🎵", type: "Horizontal", path: "" },
+    { slug: "news-opinion", title: "News + Opinion 📰", type: "Horizontal", path: "" },
+    { slug: "reality", title: "Reality 📸", type: "Horizontal", path: "" },
+    { slug: "sci", title: "Sci 🛸", type: "Horizontal", path: "" },
+    { slug: "sci-fi", title: "Sci-Fi 🚀", type: "Horizontal", path: "" },
+    { slug: "sports", title: "Sports 🏅", type: "Horizontal", path: "" },
+    { slug: "true-crime", title: "True Crime 🕵️", type: "Horizontal", path: "" },
+    { slug: "westerns", title: "Westerns 🤠", type: "Horizontal", path: "" } 
   ]);
 }
 
 function getPrimaryCategories() {
   return JSON.stringify([
+
     { name: "VTV", slug: "vtv" },
     { name: "VTVcab", slug: "vtvcab" },
     { name: "TV360", slug: "tv360" },
-    { name: "VTVPrime", slug: "vtvprime" },
     { name: "QUỐC TẾ", slug: "international" },
     { name: "HTV x HTVC", slug: "htv-htvc" },
     { name: "SCTV", slug: "sctv" },
     { name: "ĐỊA PHƯƠNG", slug: "local" },
-    { name: "BACKUP", slug: "backup" }
+    { name: "Radio", slug: "radio" },
+    { name: "Trung Quốc", slug: "china" },
+    { name: "Hội Quán Live", slug: "illegal-hoiquanlive" },
+    { name: "Animals + Nature", slug: "animals-nature" },
+    { name: "Anime", slug: "anime" },
+    { name: "Big Brother Live", slug: "big-brother-live" },
+    { name: "Classic TV", slug: "classic-tv" },
+    { name: "Comedy", slug: "comedy" },
+    { name: "Competition Reality", slug: "competition-reality" },
+    { name: "Daytime + Game", slug: "daytime-game" },
+    { name: "Drama", slug: "drama" },
+    { name: "En Español", slug: "en-espanol" },
+    { name: "Entertainment", slug: "entertainment" },
+    { name: "History + Science", slug: "history-science" },
+    { name: "Home + Food", slug: "home-food" },
+    { name: "Kids", slug: "kids" },
+    { name: "Local News", slug: "local-news" },
+    { name: "Movies", slug: "movies" },
+    { name: "Music Videos", slug: "music-videos" },
+    { name: "News + Opinion", slug: "news-opinion" },
+    { name: "Reality", slug: "reality" },
+    { name: "Sci", slug: "sci" },
+    { name: "Sci-Fi", slug: "sci-fi" },
+    { name: "Sports", slug: "sports" },
+    { name: "True Crime", slug: "true-crime" },
+    { name: "Westerns", slug: "westerns" }
   ]);
 }
 
@@ -105,9 +154,9 @@ function parseListResponse(html, apiUrl) {
       } = channel;
 
       items.push({
-        id: licenseKey ? licenseKey + "&channelId=" + channel.channelId + "|User-Agent=Dalvik/2.1.0&Referer=https://tv.vietanhtv.top/" : "?channelId=" + channel.channelId,
+        id: licenseKey ? licenseKey + "&channelId=" + channel.channelId + `|User-Agent=Dalvik/2.1.0&Referer=${BASE_URL}` : "?channelId=" + channel.channelId,
         title: channel.name,
-        description: `Channel "${channel.name}" is hosted on server VIETANHTV.`,
+        description: `Channel "${channel.name}" is hosted on server VMTTV.`,
         posterUrl: channel.tvgLogo || FALLBACK_POSTER_URL,
         backdropUrl: channel.tvgLogo || FALLBACK_POSTER_URL,
         quality: "LIVE",
@@ -120,7 +169,7 @@ function parseListResponse(html, apiUrl) {
       pagination: { currentPage: 1, totalPages: 1 }
     });
   } catch (error) {
-    console.error("⛔ [parseDetailResponse in vietanhtv_plugin.js] ERROR MESSAGE: ", error);
+    console.error("⛔ [parseDetailResponse in hoiquanclick_plugin.js] ERROR MESSAGE: ", error);
     return JSON.stringify({
         items: [],
         pagination: { currentPage: 1, totalPages: 1 }
@@ -149,15 +198,15 @@ function parseDetailResponse(html, apiUrl) {
       }
     } = getChannel(channelList, channelId);
     
-    console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Name: ", name);
+    console.log("ℹ️ [parseDetailResponse in hoiquanclick_plugin.js] Name: ", name);
     // Handle license_type and manifest_type
     // Value manifest_type = dash or mdp
     // Value license_type = clearkey
     if (licenseType === "clearkey") {
       const clearKey = getClearKey(html, licenseKey);
     
-      console.log(`ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Manifest type DASH (MPD) - ClearKey: `, clearKey);
-      console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] URL:", url);
+      console.log(`ℹ️ [parseDetailResponse in hoiquanclick_plugin.js] Manifest type DASH (MPD) - ClearKey: `, clearKey);
+      console.log("ℹ️ [parseDetailResponse in hoiquanclick_plugin.js] URL:", url);
       return JSON.stringify({
         isEmbed: false,
         url: url,
@@ -175,8 +224,8 @@ function parseDetailResponse(html, apiUrl) {
     else if (licenseType === "widevine") { // Value manifest_type = dash or mdp, Value license_type = widevine
       const licenseUrl = apiUrl.substring(0, apiUrl.indexOf("&channelId"));
       
-      console.log(`ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Manifest type DASH (MPD) - Widevine: `, apiUrl);
-      console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] URL:", url);
+      console.log(`ℹ️ [parseDetailResponse in hoiquanclick_plugin.js] Manifest type DASH (MPD) - Widevine: `, apiUrl);
+      console.log("ℹ️ [parseDetailResponse in hoiquanclick_plugin.js] URL:", url);
       return JSON.stringify({
         isEmbed: false,
         url: url,
@@ -191,8 +240,8 @@ function parseDetailResponse(html, apiUrl) {
       });
     }
     else { // No manifest_type and licenseType, Normal HLS (m3u8)
-      console.log(`ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Manifest type HLS (M3U8)`);
-      console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] URL:", url);
+      console.log(`ℹ️ [parseDetailResponse in hoiquanclick_plugin.js] Manifest type HLS (M3U8)`);
+      console.log("ℹ️ [parseDetailResponse in hoiquanclick_plugin.js] URL:", url);
       return JSON.stringify({
         isEmbed: false,
         url: url,
@@ -205,7 +254,7 @@ function parseDetailResponse(html, apiUrl) {
       });
     }
   } catch (error) {
-    console.error("⛔ [parseDetailResponse in vietanhtv_plugin.js] ERROR MESSAGE: ", error);
+    console.error("⛔ [parseDetailResponse in hoiquanclick_plugin.js] ERROR MESSAGE: ", error);
     return "{}";
   }
 }
@@ -228,22 +277,66 @@ function parseYearsResponse(html) {
 // VARIABLES
 // ======================================
 
-const BASE_URL = "https://tv.vietanhtv.top/tv";
+const BASE_URL = "https://raw.githubusercontent.com/hoiquanclick/hoiquan/refs/heads/main/vip.m3u";
 const FALLBACK_POSTER_URL = "https://i.ibb.co/rKHf363x/fallback-thumbnail.webp";
 let channelList = [];
 // Use GROUP_MAP to rename and merge the channel into tvg-group.
 const GROUP_MAP = {
-  VTV: "VTV ⭐",
-  VTVcab: "VTVcab 💎",
-  "In The Box": "QUỐC TẾ 🌍",
-  "Quốc Tế": "QUỐC TẾ 🌍",
-  HTV: "HTV x HTVC 🧬",
-  SCTV: "SCTV 🎫",
-  "Địa Phương": "ĐỊA PHƯƠNG 📺",
-  "Dự phòng": "BACKUP 📌",
-  "Sự Kiện TV360": "TV360 📡",
-  "Rạp Phim": "TV360 📡",
-  "Sự Kiện VTVPrime": "VTVPrime 🛰️"
+  vtv: "VTV ⭐",
+  "thời sự": "VTV ⭐",
+  vtvcab: "VTVcab 💎",
+  "in the box": "QUỐC TẾ 🌍",
+  "📦| in the box": "QUỐC TẾ 🌍",
+  "in the box copy": "QUỐC TẾ 🌍",
+  "quốc tế": "QUỐC TẾ 🌍",
+  "tv360": "QUỐC TẾ 🌍",
+  htv: "HTV x HTVC 🧬",
+  sctv: "SCTV 🎫",
+  "địa phương": "ĐỊA PHƯƠNG 📺",
+  "kênh địa phương": "ĐỊA PHƯƠNG 📺",
+  "thvl": "ĐỊA PHƯƠNG 📺",
+  "dự phòng": "BACKUP 📌",
+  "sự kiện tv360": "TV360 📡",
+  "tv360 live": "TV360 📡",
+  "rạp phim": "TV360 📡",
+  "sự kiện vtvprime": "VTVPrime 🛰️",
+  "thiết yếu": "VTV ⭐",
+  "🌐| thiết yếu": "VTV ⭐",
+  "htv/c": "HTV x HTVC 🧬",
+  "thể thao quốc tế": "International Sport 👑",
+  "asean huyndai cup 2026": "🔴 ASEAN HUYNDAI CUP 2026",
+  "live events 🔴": "VOD 🎞️",
+  "sự kiện fpt play": "FPTPlay 🏷️",
+  "radio": "Radio 📻",
+  "🇬🇧 uk radio": "Radio 📻",
+  "israel": "Israel 🌐",
+  "🇰🇷| hàn quốc": "Hàn Quốc 🌐",
+  "🇨🇳| trung quốc": "Trung Quốc 🌐",
+  "cctv": "Trung Quốc 🌐",
+  "hội quán live ⚽️":"Hội Quán Live ⚽️",
+  "animals + nature": "Animals + Nature 🐾",
+  "anime": "Anime 🌸",
+  "big brother live": "Big Brother Live 📹",
+  "classic tv": "Classic TV 📺",
+  "comedy": "Comedy 😂",
+  "competition reality": "Competition Reality 🏆",
+  "daytime + game": "Daytime + Game 🎲",
+  "drama": "Drama 🎭",
+  "en español": "En Español 🇪🇸",
+  "entertainment": "Entertainment 🎉",
+  "history + science": "History + Science 🔬",
+  "home + food": "Home + Food 🍳",
+  "kids": "Kids 🧸",
+  "local news": "Local News 📍",
+  "movies": "Movies 🎬",
+  "music videos": "Music Videos 🎵",
+  "news + opinion": "News + Opinion 📰",
+  "reality": "Reality 📸",
+  "sci": "Sci 🛸",
+  "sci-fi": "Sci-Fi 🚀",
+  "sports": "Sports 🏅",
+  "true crime": "True Crime 🕵️",
+  "westerns": "Westerns 🤠"
 };
 // Use CATEGORY_MAP to convert the slug to tvg-group.
 const CATEGORY_MAP = {
@@ -255,7 +348,39 @@ const CATEGORY_MAP = {
   "htv-htvc": "HTV x HTVC 🧬",
   sctv: "SCTV 🎫",
   local: "ĐỊA PHƯƠNG 📺",
-  backup: "BACKUP 📌"
+  backup: "BACKUP 📌",
+  "international-sport": "International Sport 👑",
+  "event": "🔴 ASEAN HUYNDAI CUP 2026",
+  "vod": "VOD 🎞️",
+  "fptplay": "FPTPlay 🏷️",
+  "radio": "Radio 📻",
+  "israel": "Israel 🌐",
+  "korea": "Hàn Quốc 🌐",
+  "china": "Trung Quốc 🌐",
+  "illegal-hoiquanlive": "Hội Quán Live ⚽️",
+  "animals-nature": "Animals + Nature 🐾",
+  "anime": "Anime 🌸",
+  "big-brother-live": "Big Brother Live 📹",
+  "classic-tv": "Classic TV 📺",
+  "comedy": "Comedy 😂",
+  "competition-reality": "Competition Reality 🏆",
+  "daytime-game": "Daytime + Game 🎲",
+  "drama": "Drama 🎭",
+  "en-espanol": "En Español 🇪🇸",
+  "entertainment": "Entertainment 🎉",
+  "history-science": "History + Science 🔬",
+  "home-food": "Home + Food 🍳",
+  "kids": "Kids 🧸",
+  "local-news": "Local News 📍",
+  "movies": "Movies 🎬",
+  "music-videos": "Music Videos 🎵",
+  "news-opinion": "News + Opinion 📰",
+  "reality": "Reality 📸",
+  "sci": "Sci 🛸",
+  "sci-fi": "Sci-Fi 🚀",
+  "sports": "Sports 🏅",
+  "true-crime": "True Crime 🕵️",
+  "westerns": "Westerns 🤠"
 };
 
 // ======================================
@@ -319,8 +444,8 @@ function parseM3U(text) {
 
       const groupMatch = line.match(/group-title="([^"]+)"/i);
       if (groupMatch && groupMatch[1])
-        currentChannel.tvgGroup = GROUP_MAP[groupMatch[1]]
-          ? GROUP_MAP[groupMatch[1]]
+        currentChannel.tvgGroup = GROUP_MAP[groupMatch[1].toLowerCase()]
+          ? GROUP_MAP[groupMatch[1].toLowerCase()]
           : groupMatch[1];
 
       const idMatch = line.match(/tvg-id="([^"]+)"/i);
@@ -432,7 +557,7 @@ function getClearKey(html, licenseKey) {
   try { // clearKey needs to be fetched.
     // JSON format {"keys":[{"kid":"...","k":"..."}]}
     const keyData = JSON.parse(html);
-    console.log("ℹ️ [getClearKey in vietanhtv_plugin.js] clearKey NEEDS to be fetched - ", keyData);
+    console.log("ℹ️ [getClearKey in hoiquanclick_plugin.js] clearKey NEEDS to be fetched - ", keyData);
     if (keyData.keys && Array.isArray(keyData.keys)) {
       keyData.keys.forEach((k) => {
         clearKey.drmKid = base64ToHex(k.kid);
@@ -443,7 +568,7 @@ function getClearKey(html, licenseKey) {
       clearKey.drmKey = base64ToHex(keyData.k);
     }
   } catch (error) { // clearKey does not require fetching.
-    console.log("ℹ️ [getClearKey in vietanhtv_plugin.js] clearKey does NOT require fetching - ", licenseKey);
+    console.log("ℹ️ [getClearKey in hoiquanclick_plugin.js] clearKey does NOT require fetching - ", licenseKey);
     // Hex format "KID:KEY" (e.g. license_key=aabb...:ccdd...)
     if (licenseKey && licenseKey.includes(":") && licenseKey.split(":").length === 2) {
       const parts = licenseKey.split(":");

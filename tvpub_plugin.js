@@ -4,11 +4,11 @@
 
 function getManifest() {
   return JSON.stringify({
-    id: "vietanhtv",
-    name: "VietAnhTV",
-    version: "1.0.5",
-    baseUrl: "https://tv.vietanhtv.top/tv",
-    iconUrl: "https://i.ibb.co/b8dVqVt/vietanhtv-logo.jpg",
+    id: "tvpub",
+    name: "TVPUB",
+    version: "1.0.0",
+    baseUrl: "https://raw.githubusercontent.com/quanlehong539/TVPub/refs/heads/main/TVPub%20IPTV",
+    iconUrl: "https://i.ibb.co/KjVv0WRP/tvpub-logo.jpg",
     isEnabled: true,
     isAdult: false,
     type: "IPTV",
@@ -23,26 +23,29 @@ function getHomeSections() {
     { slug: "vtv", title: "VTV ⭐", type: "Horizontal", path: "" },
     { slug: "vtvcab", title: "VTVcab 💎", type: "Horizontal", path: "" },
     { slug: "tv360", title: "TV360 📡", type: "Horizontal", path: "" },
-    { slug: "vtvprime", title: "VTVPrime 🛰️", type: "Horizontal", path: "" },
     { slug: "international", title: "QUỐC TẾ 🌍", type: "Horizontal", path: "" },
     { slug: "htv-htvc", title: "HTV x HTVC 🧬", type: "Horizontal", path: "" },
     { slug: "sctv", title: "SCTV 🎫", type: "Horizontal", path: "" },
     { slug: "local", title: "ĐỊA PHƯƠNG 📺", type: "Horizontal", path: "" },
-    { slug: "backup", title: "BACKUP 📌", type: "Horizontal", path: "" }
+    { slug: "radio", title: "Radio 📻", type: "Horizontal", path: "" },
+    { slug: "illegal-colcatv", title: "COLA TV 🔴 ⚽ 🏀", type: "Horizontal", path: "" }, 
+    { slug: "illegal-phaohoatv", title: "PHÁO HOA TV 🔴 ⚽ 🏀", type: "Horizontal", path: "" }, 
   ]);
 }
 
 function getPrimaryCategories() {
   return JSON.stringify([
+
     { name: "VTV", slug: "vtv" },
     { name: "VTVcab", slug: "vtvcab" },
     { name: "TV360", slug: "tv360" },
-    { name: "VTVPrime", slug: "vtvprime" },
     { name: "QUỐC TẾ", slug: "international" },
     { name: "HTV x HTVC", slug: "htv-htvc" },
     { name: "SCTV", slug: "sctv" },
     { name: "ĐỊA PHƯƠNG", slug: "local" },
-    { name: "BACKUP", slug: "backup" }
+    { name: "Radio", slug: "radio" },
+    { name: "COLA TV", slug: "illegal-colcatv" },
+    { name: "PHÁO HOA TV", slug: "illegal-phaohoatv" },
   ]);
 }
 
@@ -105,9 +108,9 @@ function parseListResponse(html, apiUrl) {
       } = channel;
 
       items.push({
-        id: licenseKey ? licenseKey + "&channelId=" + channel.channelId + "|User-Agent=Dalvik/2.1.0&Referer=https://tv.vietanhtv.top/" : "?channelId=" + channel.channelId,
+        id: licenseKey ? licenseKey + "&channelId=" + channel.channelId + `|User-Agent=Dalvik/2.1.0&Referer=${BASE_URL}` : "?channelId=" + channel.channelId,
         title: channel.name,
-        description: `Channel "${channel.name}" is hosted on server VIETANHTV.`,
+        description: `Channel "${channel.name}" is hosted on server VMTTV.`,
         posterUrl: channel.tvgLogo || FALLBACK_POSTER_URL,
         backdropUrl: channel.tvgLogo || FALLBACK_POSTER_URL,
         quality: "LIVE",
@@ -120,7 +123,7 @@ function parseListResponse(html, apiUrl) {
       pagination: { currentPage: 1, totalPages: 1 }
     });
   } catch (error) {
-    console.error("⛔ [parseDetailResponse in vietanhtv_plugin.js] ERROR MESSAGE: ", error);
+    console.error("⛔ [parseDetailResponse in tvpub_plugin.js] ERROR MESSAGE: ", error);
     return JSON.stringify({
         items: [],
         pagination: { currentPage: 1, totalPages: 1 }
@@ -149,15 +152,15 @@ function parseDetailResponse(html, apiUrl) {
       }
     } = getChannel(channelList, channelId);
     
-    console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Name: ", name);
+    console.log("ℹ️ [parseDetailResponse in tvpub_plugin.js] Name: ", name);
     // Handle license_type and manifest_type
     // Value manifest_type = dash or mdp
     // Value license_type = clearkey
     if (licenseType === "clearkey") {
       const clearKey = getClearKey(html, licenseKey);
     
-      console.log(`ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Manifest type DASH (MPD) - ClearKey: `, clearKey);
-      console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] URL:", url);
+      console.log(`ℹ️ [parseDetailResponse in tvpub_plugin.js] Manifest type DASH (MPD) - ClearKey: `, clearKey);
+      console.log("ℹ️ [parseDetailResponse in tvpub_plugin.js] URL:", url);
       return JSON.stringify({
         isEmbed: false,
         url: url,
@@ -175,8 +178,8 @@ function parseDetailResponse(html, apiUrl) {
     else if (licenseType === "widevine") { // Value manifest_type = dash or mdp, Value license_type = widevine
       const licenseUrl = apiUrl.substring(0, apiUrl.indexOf("&channelId"));
       
-      console.log(`ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Manifest type DASH (MPD) - Widevine: `, apiUrl);
-      console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] URL:", url);
+      console.log(`ℹ️ [parseDetailResponse in tvpub_plugin.js] Manifest type DASH (MPD) - Widevine: `, apiUrl);
+      console.log("ℹ️ [parseDetailResponse in tvpub_plugin.js] URL:", url);
       return JSON.stringify({
         isEmbed: false,
         url: url,
@@ -191,8 +194,8 @@ function parseDetailResponse(html, apiUrl) {
       });
     }
     else { // No manifest_type and licenseType, Normal HLS (m3u8)
-      console.log(`ℹ️ [parseDetailResponse in vietanhtv_plugin.js] Manifest type HLS (M3U8)`);
-      console.log("ℹ️ [parseDetailResponse in vietanhtv_plugin.js] URL:", url);
+      console.log(`ℹ️ [parseDetailResponse in tvpub_plugin.js] Manifest type HLS (M3U8)`);
+      console.log("ℹ️ [parseDetailResponse in tvpub_plugin.js] URL:", url);
       return JSON.stringify({
         isEmbed: false,
         url: url,
@@ -205,7 +208,7 @@ function parseDetailResponse(html, apiUrl) {
       });
     }
   } catch (error) {
-    console.error("⛔ [parseDetailResponse in vietanhtv_plugin.js] ERROR MESSAGE: ", error);
+    console.error("⛔ [parseDetailResponse in tvpub_plugin.js] ERROR MESSAGE: ", error);
     return "{}";
   }
 }
@@ -228,34 +231,72 @@ function parseYearsResponse(html) {
 // VARIABLES
 // ======================================
 
-const BASE_URL = "https://tv.vietanhtv.top/tv";
+const BASE_URL = "https://raw.githubusercontent.com/quanlehong539/TVPub/refs/heads/main/TVPub%20IPTV";
 const FALLBACK_POSTER_URL = "https://i.ibb.co/rKHf363x/fallback-thumbnail.webp";
 let channelList = [];
 // Use GROUP_MAP to rename and merge the channel into tvg-group.
 const GROUP_MAP = {
-  VTV: "VTV ⭐",
-  VTVcab: "VTVcab 💎",
-  "In The Box": "QUỐC TẾ 🌍",
-  "Quốc Tế": "QUỐC TẾ 🌍",
-  HTV: "HTV x HTVC 🧬",
-  SCTV: "SCTV 🎫",
-  "Địa Phương": "ĐỊA PHƯƠNG 📺",
-  "Dự phòng": "BACKUP 📌",
-  "Sự Kiện TV360": "TV360 📡",
-  "Rạp Phim": "TV360 📡",
-  "Sự Kiện VTVPrime": "VTVPrime 🛰️"
+  vtv: "VTV ⭐",
+  "thời sự": "VTV ⭐",
+  vtvcab: "VTVcab 💎",
+  "in the box": "QUỐC TẾ 🌍",
+  "📦| in the box": "QUỐC TẾ 🌍",
+  "in the box copy": "QUỐC TẾ 🌍",
+  "quốc tế": "QUỐC TẾ 🌍",
+  "hải ngoại": "QUỐC TẾ 🌍",
+  htv: "HTV x HTVC 🧬",
+  sctv: "SCTV 🎫",
+  "địa phương": "ĐỊA PHƯƠNG 📺",
+  "kênh địa phương": "ĐỊA PHƯƠNG 📺",
+  "thvl": "ĐỊA PHƯƠNG 📺",
+  "dự phòng": "BACKUP 📌",
+  "sự kiện tv360": "TV360 📡",
+  "tv360 live": "TV360 📡",
+  "rạp phim": "TV360 📡",
+  "🔴 ⚽ 🌏 🇻🇳 tv360": "TV360 📡",
+  "sự kiện vtvprime": "VTVPrime 🛰️",
+  "thiết yếu": "VTV ⭐",
+  "🌐| thiết yếu": "VTV ⭐",
+  "htv/c": "HTV x HTVC 🧬",
+  "thể thao quốc tế": "International Sport 👑",
+  "asean huyndai cup 2026": "🔴 ASEAN HUYNDAI CUP 2026",
+  "live events 🔴": "VOD 🎞️",
+  "sự kiện fpt play": "FPTPlay 🏷️",
+  "radio": "Radio 📻",
+  "phát thanh": "Radio 📻",
+  "🇬🇧 uk radio": "Radio 📻",
+  "israel": "Israel 🌐",
+  "🇰🇷| hàn quốc": "Hàn Quốc 🌐",
+  "🇨🇳| trung quốc": "Trung Quốc 🌐",
+  "cctv": "Trung Quốc 🌐",
+  "🔴 ⚽ 🏀 cola tv": "COLA TV 🔴 ⚽ 🏀",
+  "🔴 ⚽ 🏐 pháo hoa tv": "PHÁO HOA TV 🔴 ⚽ 🏀",
 };
 // Use CATEGORY_MAP to convert the slug to tvg-group.
 const CATEGORY_MAP = {
   vtv: "VTV ⭐",
+  antvhd: "VTV ⭐",
+  vietnamtoday: "VTV ⭐",
+  qpvnhd: "VTV ⭐",
   vtvcab: "VTVcab 💎",
+  on: "VTVcab 💎",
   tv360: "TV360 📡",
   vtvprime: "VTVPrime 🛰️",
   international: "QUỐC TẾ 🌍",
   "htv-htvc": "HTV x HTVC 🧬",
   sctv: "SCTV 🎫",
   local: "ĐỊA PHƯƠNG 📺",
-  backup: "BACKUP 📌"
+  backup: "BACKUP 📌",
+  "international-sport": "International Sport 👑",
+  "event": "🔴 ASEAN HUYNDAI CUP 2026",
+  "vod": "VOD 🎞️",
+  "fptplay": "FPTPlay 🏷️",
+  "radio": "Radio 📻",
+  "israel": "Israel 🌐",
+  "korea": "Hàn Quốc 🌐",
+  "china": "Trung Quốc 🌐",
+  "illegal-colcatv": "COLA TV 🔴 ⚽ 🏀",
+  "illegal-phaohoatv": "PHÁO HOA TV 🔴 ⚽ 🏀",
 };
 
 // ======================================
@@ -317,14 +358,24 @@ function parseM3U(text) {
       const logoMatch = line.match(/tvg-logo="([^"]+)"/i);
       if (logoMatch && logoMatch[1]) currentChannel.tvgLogo = logoMatch[1];
 
-      const groupMatch = line.match(/group-title="([^"]+)"/i);
-      if (groupMatch && groupMatch[1])
-        currentChannel.tvgGroup = GROUP_MAP[groupMatch[1]]
-          ? GROUP_MAP[groupMatch[1]]
-          : groupMatch[1];
-
       const idMatch = line.match(/tvg-id="([^"]+)"/i);
       if (idMatch && idMatch[1]) currentChannel.tvgId = idMatch[1];
+
+      const groupMatch = line.match(/group-title="([^"]+)"/i);
+      if (groupMatch && groupMatch[1]) {
+        if(groupMatch[1] === "QUỐC TẾ"  || groupMatch[1] === "ĐỊA PHƯƠNG" || groupMatch[1] === "PHÁT THANH" || groupMatch[1] === "HẢI NGOẠI" || groupMatch[1] === "🔴 ⚽ 🏀 COLA TV" || groupMatch[1] === "🔴 ⚽ 🏐 PHÁO HOA TV" || groupMatch[1] === "🔴 ⚽ 🌏 🇻🇳 TV360")
+          currentChannel.tvgGroup = GROUP_MAP[groupMatch[1].toLowerCase()]
+            ? GROUP_MAP[groupMatch[1].toLowerCase()]
+            : groupMatch[1];
+        else {
+          for (const key in CATEGORY_MAP) {
+            if(startsWithRegex(currentChannel.tvgId, (key === "htv-htvc" ? "htv" : key))) {
+              currentChannel.tvgGroup = CATEGORY_MAP[key];
+              break;
+            }
+          }
+        }
+      }
 
       // Capture all catchup attributes
       const catchupMatch = line.match(/catchup="([^"]+)"/i);
@@ -375,6 +426,11 @@ function parseM3U(text) {
     }
   }
   return channels;
+}
+
+function startsWithRegex(str, prefix) {
+  const regex = new RegExp("^" + prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  return regex.test(str);
 }
 
 // Convert Base64/Base64Url to Hex for ClearKey
@@ -432,7 +488,7 @@ function getClearKey(html, licenseKey) {
   try { // clearKey needs to be fetched.
     // JSON format {"keys":[{"kid":"...","k":"..."}]}
     const keyData = JSON.parse(html);
-    console.log("ℹ️ [getClearKey in vietanhtv_plugin.js] clearKey NEEDS to be fetched - ", keyData);
+    console.log("ℹ️ [getClearKey in tvpub_plugin.js] clearKey NEEDS to be fetched - ", keyData);
     if (keyData.keys && Array.isArray(keyData.keys)) {
       keyData.keys.forEach((k) => {
         clearKey.drmKid = base64ToHex(k.kid);
@@ -443,7 +499,7 @@ function getClearKey(html, licenseKey) {
       clearKey.drmKey = base64ToHex(keyData.k);
     }
   } catch (error) { // clearKey does not require fetching.
-    console.log("ℹ️ [getClearKey in vietanhtv_plugin.js] clearKey does NOT require fetching - ", licenseKey);
+    console.log("ℹ️ [getClearKey in tvpub_plugin.js] clearKey does NOT require fetching - ", licenseKey);
     // Hex format "KID:KEY" (e.g. license_key=aabb...:ccdd...)
     if (licenseKey && licenseKey.includes(":") && licenseKey.split(":").length === 2) {
       const parts = licenseKey.split(":");
