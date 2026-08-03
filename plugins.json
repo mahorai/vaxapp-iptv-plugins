@@ -6,7 +6,8 @@
       "name": "VietAnhTV",
       "version": "1.0.3",
       "scriptUrl": "https://raw.githubusercontent.com/nicolainani/vaxapp-iptv-plugins/refs/heads/main/vietanhtv_plugin.js",
-      "iconUrl": "https://i.ibb.co/b8dVqVt/vietanhtv-logo.jpg"
+      "iconUrl": "https://i.ibb.co/b8dVqVt/vietanhtv-logo.jpg",
+      "info": "📝 IPTV"
     }
   ]
 }
