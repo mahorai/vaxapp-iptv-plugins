@@ -6,7 +6,7 @@ function getManifest() {
   return JSON.stringify({
     id: "vatvxsxtv",
     name: "VATVxSXTV",
-    version: "1.1.0",
+    version: "1.1.1",
     baseUrl: BASE_URL,
     iconUrl: "https://i.ibb.co/GyFwhPJ/vatvxsxtv-logo.jpg",
     isEnabled: true,
@@ -283,7 +283,8 @@ function parseYearsResponse(html) {
 // VARIABLES
 // ======================================
 
-const BASE_URL = "https://tv.vietanhtv.top/tv";
+// const BASE_URL = "https://tv.vietanhtv.top/tv";
+const BASE_URL = "https://tv.vietanhtv.top/sex";
 const FALLBACK_POSTER_URL = "https://i.ibb.co/rKHf363x/fallback-thumbnail.webp";
 let channelList = [];
 // Use GROUP_MAP to rename and merge the channel into tvg-group.
