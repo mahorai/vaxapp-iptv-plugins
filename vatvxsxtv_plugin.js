@@ -5,8 +5,8 @@
 function getManifest() {
   return JSON.stringify({
     id: "vatvxsxtv",
-    name: "VATVxSXTV",
-    version: "1.1.1",
+    name: "[IPTV] VATVxSXTV",
+    version: "1.1.2",
     baseUrl: BASE_URL,
     iconUrl: "https://i.ibb.co/GyFwhPJ/vatvxsxtv-logo.jpg",
     isEnabled: true,
@@ -31,7 +31,7 @@ function getHomeSections() {
     { slug: "sctv", title: "SCTV 🎫", type: "Horizontal", path: "" },
     { slug: "local", title: "Địa Phương 📺", type: "Horizontal", path: "" },
     { slug: "backup", title: "Backup 📌", type: "Horizontal", path: "" },
-    { slug: "illegal-socolive", title: "Socolive ⚽", type: "Grid", path: "" }
+    // { slug: "illegal-socolive", title: "Socolive ⚽", type: "Grid", path: "" }
   ]);
 }
 
@@ -46,7 +46,7 @@ function getPrimaryCategories() {
     { name: "SCTV", slug: "sctv" },
     { name: "Địa Phương", slug: "local" },
     { name: "Backup", slug: "backup" },
-    { name: "Socolive", slug: "illegal-socolive" }
+    // { name: "Socolive", slug: "illegal-socolive" }
   ]);
 }
 
@@ -300,8 +300,9 @@ const GROUP_MAP = {
   "sự kiện tv360": "TV360 📡",
   "rạp phim": "TV360 📡",
   "sự kiện vtvprime": "VTVPrime 🛰️",
-  socolive: "Socolive ⚽",
+  // socolive: "Socolive ⚽",
   sk: "Event 🎉",
+  fpt: "Event 🎉",
   epl: "EPL 🧧",
 };
 // Use CATEGORY_MAP to convert the slug to tvg-group.
@@ -315,7 +316,7 @@ const CATEGORY_MAP = {
   sctv: "SCTV 🎫",
   local: "Địa Phương 📺",
   backup: "Backup 📌",
-  "illegal-socolive": "Socolive ⚽",
+  // "illegal-socolive": "Socolive ⚽",
   event: "Event 🎉",
   epl: "EPL 🧧",
 };

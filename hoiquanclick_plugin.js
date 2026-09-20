@@ -5,8 +5,8 @@
 function getManifest() {
   return JSON.stringify({
     id: "hoiquanclick",
-    name: "HoiQuanClick",
-    version: "1.0.2",
+    name: "[IPTV] HoiQuanClick",
+    version: "1.0.3",
     baseUrl: BASE_URL,
     iconUrl: "https://i.ibb.co/HpXFPKxL/hoiquanclick-logo.png",
     isEnabled: true,

@@ -5,8 +5,8 @@
 function getManifest() {
   return JSON.stringify({
     id: "vmttvbackup",
-    name: "VMTTVBackup",
-    version: "1.0.0",
+    name: "[IPTV] VMTTVBackup",
+    version: "1.0.1",
     baseUrl: BASE_URL,
     iconUrl: "https://i.ibb.co/nq4ns7bd/vmttv-logo.jpg",
     isEnabled: true,

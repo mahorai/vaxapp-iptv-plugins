@@ -5,8 +5,8 @@
 function getManifest() {
   return JSON.stringify({
     id: "tvpub",
-    name: "TVPub",
-    version: "1.0.2",
+    name: "[IPTV] TVPub",
+    version: "1.0.4",
     baseUrl: BASE_URL,
     iconUrl: "https://i.ibb.co/KjVv0WRP/tvpub-logo.jpg",
     isEnabled: true,
@@ -28,8 +28,8 @@ function getHomeSections() {
     { slug: "sctv", title: "SCTV 🎫", type: "Horizontal", path: "" },
     { slug: "local", title: "Địa Phương 📺", type: "Horizontal", path: "" },
     { slug: "radio", title: "Radio 📻", type: "Horizontal", path: "" },
-    { slug: "illegal-colcatv", title: "Cola TV 🔴 ⚽ 🏀", type: "Horizontal", path: "" }, 
-    { slug: "illegal-phaohoatv", title: "Pháo Hoa TV 🔴 ⚽ 🏀", type: "Horizontal", path: "" }, 
+    // { slug: "illegal-colcatv", title: "Cola TV 🔴 ⚽ 🏀", type: "Horizontal", path: "" }, 
+    // { slug: "illegal-phaohoatv", title: "Pháo Hoa TV 🔴 ⚽ 🏀", type: "Horizontal", path: "" }, 
   ]);
 }
 
@@ -44,8 +44,8 @@ function getPrimaryCategories() {
     { name: "SCTV", slug: "sctv" },
     { name: "Địa Phương", slug: "local" },
     { name: "Radio", slug: "radio" },
-    { name: "Cola TV", slug: "illegal-colcatv" },
-    { name: "Pháo Hoa TV", slug: "illegal-phaohoatv" },
+    // { name: "Cola TV", slug: "illegal-colcatv" },
+    // { name: "Pháo Hoa TV", slug: "illegal-phaohoatv" },
   ]);
 }
 
@@ -269,8 +269,8 @@ const GROUP_MAP = {
   "🇰🇷| hàn quốc": "Hàn Quốc 🌐",
   "🇨🇳| trung quốc": "Trung Quốc 🌐",
   "cctv": "Trung Quốc 🌐",
-  "🔴 ⚽ 🏀 cola tv": "Cola TV 🔴 ⚽ 🏀",
-  "🔴 ⚽ 🏐 pháo hoa tv": "Pháo Hoa TV 🔴 ⚽ 🏀",
+  // "🔴 ⚽ 🏀 cola tv": "Cola TV 🔴 ⚽ 🏀",
+  // "🔴 ⚽ 🏐 pháo hoa tv": "Pháo Hoa TV 🔴 ⚽ 🏀",
 };
 // Use CATEGORY_MAP to convert the slug to tvg-group.
 const CATEGORY_MAP = {
@@ -295,8 +295,8 @@ const CATEGORY_MAP = {
   "israel": "Israel 🌐",
   "korea": "Hàn Quốc 🌐",
   "china": "Trung Quốc 🌐",
-  "illegal-colcatv": "Cola TV 🔴 ⚽ 🏀",
-  "illegal-phaohoatv": "Pháo Hoa TV 🔴 ⚽ 🏀",
+  // "illegal-colcatv": "Cola TV 🔴 ⚽ 🏀",
+  // "illegal-phaohoatv": "Pháo Hoa TV 🔴 ⚽ 🏀",
 };
 
 // ======================================

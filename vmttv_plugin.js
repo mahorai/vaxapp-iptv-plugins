@@ -5,8 +5,8 @@
 function getManifest() {
   return JSON.stringify({
     id: "vmttv",
-    name: "VMTTV",
-    version: "1.0.4",
+    name: "[IPTV] VMTTV",
+    version: "1.0.5",
     baseUrl: BASE_URL,
     iconUrl: "https://i.ibb.co/nq4ns7bd/vmttv-logo.jpg",
     isEnabled: true,
@@ -20,6 +20,7 @@ function getManifest() {
 
 function getHomeSections() {
   return JSON.stringify([
+    { slug: "event", title: "Event 🎉", type: "Horizontal", path: "" },
     { slug: "vtv", title: "VTV ⭐", type: "Horizontal", path: "" },
     { slug: "vtvcab", title: "VTVcab 💎", type: "Horizontal", path: "" },
     { slug: "tv360", title: "TV360 📡", type: "Horizontal", path: "" },
@@ -36,7 +37,6 @@ function getHomeSections() {
     { slug: "china", title: "Trung Quốc 🌐", type: "Horizontal", path: "" },
     { slug: "thailand", title: "Thái Lan 🌐", type: "Horizontal", path: "" },
     { slug: "capuchia", title: "Campuchia 🌐", type: "Horizontal", path: "" },
-    { slug: "illegal-colatv", title: "Cola TV 🔴 ⚽", type: "Horizontal", path: "" },
     { slug: "vod", title: "VOD 🎞️", type: "Grid", path: "" }
   ]);
 }
@@ -58,7 +58,6 @@ function getPrimaryCategories() {
     { name: "Hàn Quốc", slug: "korea" },
     { name: "Thái Lan", slug: "thailand" },
     { name: "Campuchia", slug: "capuchia" },
-    { name: "Cola TV", slug: "illegal-colatv" },
     { name: "VOD", slug: "vod" }
   ]);
 }
@@ -304,10 +303,11 @@ const GROUP_MAP = {
   "🇨🇳| trung quốc": "Trung Quốc 🌐",
   "🇹🇭| thái lan":"Thái Lan 🌐",
   "🇰🇭| campuchia":"Campuchia 🌐",
-  "🔴 ⚽ cola tv":"Cola TV 🔴 ⚽"
+  "asian games aichi-nagoya 2026": "Event 🎉"
 };
 // Use CATEGORY_MAP to convert the slug to tvg-group.
 const CATEGORY_MAP = {
+  event: "Event 🎉",
   vtv: "VTV ⭐",
   vtvcab: "VTVcab 💎",
   tv360: "TV360 📡",
@@ -326,7 +326,6 @@ const CATEGORY_MAP = {
   "china": "Trung Quốc 🌐",
   "thailand": "Thái Lan 🌐",
   "capuchia": "Campuchia 🌐",
-  "illegal-colatv": "Cola TV 🔴 ⚽",
 };
 
 // ======================================
